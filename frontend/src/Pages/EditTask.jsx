@@ -1,10 +1,11 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { MdCheck, MdDelete } from "react-icons/md";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 function EditTask() {
   const { id } = useParams();
+  const navigate = useNavigate();
 
   const [task, setTask] = useState({
     name: "",
@@ -31,6 +32,7 @@ function EditTask() {
       .put(`http://127.0.0.1:3000/api/v1/tasks/${id}`, task)
       .then(function (response) {
         console.log(response);
+        navigate("/list");
       })
       .catch(function (error) {
         console.log(error);
