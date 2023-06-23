@@ -2,9 +2,9 @@ import { MdCheck, MdEdit, MdDelete } from "react-icons/md";
 
 function TodoItemBottom({ desc }) {
   return (
-    <div className="flex h-fit min-h-[50px] w-2/3 items-center rounded-b-lg bg-slate-300">
-      <div className="mt-2 flex w-full justify-end px-4 pb-3 pt-2">
-        <div className="px-2/3 w-[80%]">{desc}</div>
+    <div className="flex h-fit min-h-[50px] w-full flex-col items-center rounded-b-lg bg-slate-400 sm:flex-row">
+      <div className="my-2  w-[80%] px-6 text-xl">{desc}</div>
+      <div className="flex pb-3 pr-4 pt-2">
         <button className="ml-auto rounded-lg bg-teal-500 p-3 text-xl font-bold text-slate-200">
           <MdCheck />
         </button>

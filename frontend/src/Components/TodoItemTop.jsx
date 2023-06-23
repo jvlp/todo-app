@@ -5,7 +5,7 @@ function TodoItemTop({ status, name, isExpanded, priority }) {
   return (
     <div
       className={
-        "flex h-12 w-2/3 items-center rounded-t-lg bg-slate-500 px-2" +
+        "mx-10 flex min-h-fit w-full items-center rounded-t-lg bg-slate-500" +
         `${isExpanded ? "" : " rounded-b-lg"}`
       }
     >
@@ -17,10 +17,10 @@ function TodoItemTop({ status, name, isExpanded, priority }) {
       >
         {status ? <MdCheckCircle /> : <MdRadioButtonUnchecked />}
       </div>
-
-      <div className="text-xl text-slate-300">{name}</div>
-
-      <PriorityIcon priority={priority} />
+      <div className="overflow-x-auto text-xl text-slate-300">{name}</div>
+      <div className="ml-auto flex pl-2">
+        <PriorityIcon priority={priority} />
+      </div>
     </div>
   );
 }
