@@ -1,3 +1,4 @@
+import CreateMember from "./Pages/CreateMember";
 import CreateTask from "./Pages/CreateTask";
 import EditTask from "./Pages/EditTask";
 import TodoItem from "./Components/TodoItem";
@@ -16,7 +17,8 @@ function App() {
       {/* <CreateTask /> */}
       {/* <EditTask props={mockTask} /> */}
       {/* <TodoItem props={mockTask} /> */}
-      <TodoList />
+      {/* <TodoList /> */}
+      <CreateMember />
     </div>
   );
 }
