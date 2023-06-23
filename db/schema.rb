@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_23_134605) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_23_144125) do
   create_table "members", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "email"
     t.string "name"
@@ -18,4 +18,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_23_134605) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "tasks", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.boolean "finished"
+    t.datetime "finish_date"
+    t.integer "priority"
+    t.bigint "member_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["member_id"], name: "index_tasks_on_member_id"
+  end
+
+  add_foreign_key "tasks", "members"
 end
