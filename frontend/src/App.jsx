@@ -3,6 +3,8 @@ import CreateTask from "./Pages/CreateTask";
 import EditTask from "./Pages/EditTask";
 import TodoItem from "./Components/TodoItem";
 import TodoList from "./Pages/TodoList";
+import Home from "./Pages/Home";
+
 const mockTask = {
   id: 7,
   name: "test",
@@ -18,7 +20,8 @@ function App() {
       {/* <EditTask props={mockTask} /> */}
       {/* <TodoItem props={mockTask} /> */}
       {/* <TodoList /> */}
-      <CreateMember />
+      {/* <CreateMember /> */}
+      <Home />
     </div>
   );
 }
