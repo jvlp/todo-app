@@ -1,36 +1,26 @@
 import axios from "axios";
 import { useState } from "react";
 
-function CreateMember() {
+function Login() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [prio, setPrio] = useState(0);
 
-  function handleCreateMember(e) {
+  function handleLogin(e) {
     e.preventDefault();
     const member = {
       name: name,
       email: email,
     };
-    axios
-      .post("http://127.0.0.1:3000/api/v1/members", member)
-      .then(function (response) {
-        console.log(response);
-        setName("");
-        setEmail("");
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+    console.log(member);
   }
 
   return (
     <form
-      onSubmit={handleCreateMember}
+      onSubmit={handleLogin}
       className="m-4 flex h-fit flex-col rounded-md bg-slate-200 p-10"
     >
       <h1 className="mb-8 self-center text-4xl font-extrabold text-sky-800">
-        Cadastro de Membro
+        Login
       </h1>
       <input
         type="text"
@@ -50,11 +40,11 @@ function CreateMember() {
       />
       <input
         type="submit"
-        value="Cadastrar"
+        value="Login"
         className="w-40 rounded-lg bg-sky-500 p-2 text-2xl"
       />
     </form>
   );
 }
 
-export default CreateMember;
+export default Login;

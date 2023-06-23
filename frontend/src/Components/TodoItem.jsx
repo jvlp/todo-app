@@ -3,7 +3,7 @@ import { useState } from "react";
 import TodoItemTop from "./TodoItemTop";
 import TodoItemBottom from "./TodoItemBottom";
 
-function TodoItem({ task, handleDelete }) {
+function TodoItem({ task, handleDeleteTask }) {
   const { id, finished, name, priority, description } = task;
   const [isExpanded, setIsExpanded] = useState(false);
 
@@ -18,7 +18,7 @@ function TodoItem({ task, handleDelete }) {
       />
       {isExpanded && (
         <TodoItemBottom
-          handleDelete={handleDelete}
+          handleDeleteTask={handleDeleteTask}
           desc={description}
           id={id}
         />
