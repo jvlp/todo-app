@@ -3,24 +3,26 @@ import { useState } from "react";
 import TodoItemTop from "./TodoItemTop";
 import TodoItemBottom from "./TodoItemBottom";
 
-function TodoItem(props) {
-  const { id, finished, name, priority, description } = props.props;
+function TodoItem({ task, handleDelete }) {
+  const { id, finished, name, priority, description } = task;
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (
-    <div
-      className="mt-2 flex w-full flex-col items-center"
-      onClick={(_) => {
-        setIsExpanded((current) => !current);
-      }}
-    >
+    <div className="mt-2 flex w-full flex-col items-center">
       <TodoItemTop
         status={finished}
         name={name}
         isExpanded={isExpanded}
         priority={priority}
+        setIsExpanded={setIsExpanded}
       />
-      {isExpanded && <TodoItemBottom desc={description} />}
+      {isExpanded && (
+        <TodoItemBottom
+          handleDelete={handleDelete}
+          desc={description}
+          id={id}
+        />
+      )}
     </div>
   );
 }

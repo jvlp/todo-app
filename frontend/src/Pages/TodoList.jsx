@@ -17,6 +17,18 @@ function TodoList() {
       });
   }, []);
 
+  function handleDelete(id) {
+    console.log(`http://127.0.0.1:3000/api/v1/tasks/${id}`);
+    axios
+      .delete(`http://127.0.0.1:3000/api/v1/tasks/${id}`)
+      .then(function (response) {
+        setTasks((current) => current.filter((t) => t.id !== id));
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
   const shouldShowArrowUp = () => {
     return document.documentElement.scrollTop > window.innerHeight;
   };
@@ -28,7 +40,7 @@ function TodoList() {
           Lista de Tarefas
         </h1>
         {tasks.map((task) => (
-          <TodoItem key={task.id} props={task} />
+          <TodoItem key={task.id} task={task} handleDelete={handleDelete} />
         ))}
       </div>
       {shouldShowArrowUp() && (
