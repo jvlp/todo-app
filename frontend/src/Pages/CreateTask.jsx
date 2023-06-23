@@ -4,6 +4,7 @@ import { useState } from "react";
 function CreateTask() {
   const [name, setName] = useState("");
   const [desc, setDesc] = useState("");
+  const [prio, setPrio] = useState(0);
 
   function createTaskRequest(e) {
     e.preventDefault();
@@ -11,7 +12,7 @@ function CreateTask() {
       name: name,
       description: desc,
       finished: false,
-      priority: 0,
+      priority: prio,
       member_id: 2,
     };
     axios
@@ -52,7 +53,10 @@ function CreateTask() {
         className="form-item resize-none sm:w-[30rem]"
       ></textarea>
       <div className="flex justify-between">
-        <select className="form-item w-full text-slate-800 focus:bg-slate-300">
+        <select
+          onChange={(e) => setPrio(e.target.value)}
+          className="form-item w-full text-slate-800 focus:bg-slate-300"
+        >
           <option value="0">Prioridade</option>
           <option value="0">Baixa</option>
           <option value="1">Média</option>
