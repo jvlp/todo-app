@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  description: MyText
+  finished: false
+  finish_date: 2023-06-23 11:41:25
+  priority: 1
+  member: one
+
+two:
+  name: MyString
+  description: MyText
+  finished: false
+  finish_date: 2023-06-23 11:41:25
+  priority: 1
+  member: two
