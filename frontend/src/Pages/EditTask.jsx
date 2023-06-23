@@ -1,35 +1,36 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { MdCheck, MdDelete } from "react-icons/md";
+import { useParams } from "react-router-dom";
 
-function EditTask(props) {
-  const [name, setName] = useState("");
-  const [desc, setDesc] = useState("");
-  const [prio, setPrio] = useState(0);
+function EditTask() {
+  const { id } = useParams();
+
+  const [task, setTask] = useState({
+    name: "",
+    description: "",
+    finished: false,
+    priority: 0,
+    member_id: 0,
+  });
 
   useEffect(() => {
-    console.log(props);
-    const { name, desc, prio } = props.props;
-    setName(name);
-    setDesc(desc);
-    setPrio(prio);
+    axios
+      .get(`http://127.0.0.1:3000/api/v1/tasks/${id}`)
+      .then((response) => {
+        setTask(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }, []);
 
   function handleEditTask(e) {
     e.preventDefault();
-    const task = {
-      name: name,
-      description: desc,
-      finished: false,
-      priority: prio,
-      member_id: 2,
-    };
     axios
-      .post("http://127.0.0.1:3000/api/v1/tasks", task)
+      .put(`http://127.0.0.1:3000/api/v1/tasks/${id}`, task)
       .then(function (response) {
         console.log(response);
-        setName("");
-        setDesc("");
       })
       .catch(function (error) {
         console.log(error);
@@ -47,23 +48,24 @@ function EditTask(props) {
       <input
         type="text"
         placeholder="Nome"
-        value={name}
+        value={task.name}
         minLength={5}
         maxLength={50}
-        onChange={(e) => setName(e.target.value)}
+        onChange={(e) => setTask({ ...task, name: e.target.value })}
         className="form-item sm:w-[30rem]"
       />
       <textarea
         rows={4}
         maxLength={140}
         placeholder="Descrição"
-        value={desc}
-        onChange={(e) => setDesc(e.target.value)}
+        value={task.description}
+        onChange={(e) => setTask({ ...task, description: e.target.value })}
         className="form-item resize-none sm:w-[30rem]"
       ></textarea>
       <div className="flex justify-between">
         <select
-          onChange={(e) => setPrio(e.target.value)}
+          value={task.priority}
+          onChange={(e) => setTask({ ...task, priority: e.target.value })}
           className="form-item w-full text-slate-800 focus:bg-slate-300"
         >
           <option value="0">Prioridade</option>
@@ -72,7 +74,7 @@ function EditTask(props) {
           <option value="2">Alta</option>
         </select>
         <div className="relative top-[-35px] mx-4 text-slate-700">
-          {desc.length}/140
+          {task.description.length}/140
         </div>
       </div>
       <div className="flex">
