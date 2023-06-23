@@ -27,3 +27,45 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+
+# Logs
+frontend/logs
+frontend/*.log
+frontend/npm-debug.log*
+frontend/yarn-debug.log*
+frontend/yarn-error.log*
+frontend/lerna-debug.log*
+frontend/.pnpm-debug.log*
+# Diagnostic reports (https://nodejs.org/api/report.html)
+frontend/report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+# Runtime data
+frontend/pids
+frontend/*.pid
+frontend/*.seed
+frontend/*.pid.lock
+# node-waf configuration
+frontend/.lock-wscript
+# Compiled binary addons (https://nodejs.org/api/addons.html)
+frontend/build/Release
+# Dependency directories
+frontend/node_modules/
+frontend/jspm_packages/
+# Optional npm cache directory
+frontend/.npm
+# Optional eslint cache
+frontend/.eslintcache
+# Output of 'npm pack'
+frontend/*.tgz
+# Yarn Integrity file
+frontend/.yarn-integrity
+# dotenv environment variables file
+frontend/.env
+frontend/.env.test
+frontend/.env.production
+# yarn v2
+frontend/.yarn/cache
+frontend/.yarn/unplugged
+frontend/.yarn/build-state.yml
+frontend/.yarn/install-state.gz
+frontend/.pnp.*
+frontend/yarn.lock

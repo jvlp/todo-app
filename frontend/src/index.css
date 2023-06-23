@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .form-item {
+        @apply mb-2 w-80 rounded-lg bg-slate-300 p-3 outline-none;
+    }
+
+    .form-item::placeholder {
+        @apply text-slate-700;
+    }
+
+    .form-item:focus {
+        @apply bg-slate-400;
+    }
+
+    .btn-primary {
+        @apply w-40 rounded-lg bg-sky-500 p-2 text-2xl;
+    }
+}
