@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { MdCheck, MdDelete } from "react-icons/md";
 
-function CreateTask(props) {
+function EditTask(props) {
   const [name, setName] = useState("");
   const [desc, setDesc] = useState("");
   const [prio, setPrio] = useState(0);
@@ -81,10 +81,10 @@ function CreateTask(props) {
           value="Salvar"
           className="w-40 rounded-lg bg-sky-500 p-2 text-xl font-bold text-slate-200"
         />
-        <button className="mx-4 flex items-center justify-center rounded-lg bg-teal-500 p-4 text-xl font-bold text-slate-200">
+        <button className="mx-4 rounded-lg bg-teal-500 p-4 text-xl font-bold text-slate-200">
           <MdCheck />
         </button>
-        <button className="flex items-center justify-center rounded-lg bg-red-600 px-5 text-xl font-bold text-slate-200">
+        <button className="rounded-lg bg-red-600 px-5 text-xl font-bold text-slate-200">
           <MdDelete />
         </button>
       </div>
@@ -92,4 +92,4 @@ function CreateTask(props) {
   );
 }
 
-export default CreateTask;
+export default EditTask;
