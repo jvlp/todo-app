@@ -29,6 +29,24 @@ function TodoList() {
       });
   }
 
+  function handleFinishTask(id) {
+    // update target task to finished === true
+    const task = { ...tasks.filter((t) => t.id === id), finished: true };
+    console.log(task);
+    axios
+      .put(`http://127.0.0.1:3000/api/v1/tasks/${id}`, task)
+      .then(function (response) {
+        console.log(response);
+        // update tasks
+        setTasks((current) =>
+          current.map((t) => (t.id === id ? response.data : t))
+        );
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
   const shouldShowArrowUp = () => {
     return document.documentElement.scrollTop > window.innerHeight;
   };
@@ -44,6 +62,7 @@ function TodoList() {
             key={task.id}
             task={task}
             handleDeleteTask={handleDeleteTask}
+            handleFinishTask={handleFinishTask}
           />
         ))}
       </div>
