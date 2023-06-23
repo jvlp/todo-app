@@ -5,6 +5,7 @@ import TodoItem from "./Components/TodoItem";
 import TodoList from "./Pages/TodoList";
 import Home from "./Pages/Home";
 import Login from "./Pages/Login";
+import { Outlet } from "react-router-dom";
 
 const mockTask = {
   id: 7,
@@ -23,7 +24,8 @@ function App() {
       {/* <TodoList /> */}
       {/* <CreateMember /> */}
       {/* <Home /> */}
-      <Login />
+      {/* <Login /> */}
+      <Outlet />
     </div>
   );
 }
