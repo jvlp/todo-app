@@ -1,6 +1,6 @@
 import { MdCheck, MdEdit, MdDelete } from "react-icons/md";
 
-function TodoItemBottom({ desc, id, handleDelete }) {
+function TodoItemBottom({ desc, id, handleDeleteTask }) {
   return (
     <div className="flex h-fit min-h-[50px] w-full flex-col items-center rounded-b-lg bg-slate-400 sm:flex-row">
       <div className="my-2  w-[80%] px-6 text-xl">{desc}</div>
@@ -12,7 +12,7 @@ function TodoItemBottom({ desc, id, handleDelete }) {
           <MdEdit />
         </button>
         <button
-          onClick={() => handleDelete(id)}
+          onClick={() => handleDeleteTask(id)}
           className="rounded-lg bg-red-600 p-3 text-xl font-bold text-slate-200"
         >
           <MdDelete />

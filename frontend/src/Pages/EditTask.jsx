@@ -15,7 +15,7 @@ function EditTask(props) {
     setPrio(prio);
   }, []);
 
-  function createTaskRequest(e) {
+  function handleEditTask(e) {
     e.preventDefault();
     const task = {
       name: name,
@@ -38,7 +38,7 @@ function EditTask(props) {
 
   return (
     <form
-      onSubmit={createTaskRequest}
+      onSubmit={handleEditTask}
       className="m-4 flex h-fit flex-col rounded-md bg-slate-200 p-10"
     >
       <h1 className="mb-8 self-center text-4xl font-extrabold text-sky-800">

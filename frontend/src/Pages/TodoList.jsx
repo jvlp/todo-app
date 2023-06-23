@@ -17,7 +17,7 @@ function TodoList() {
       });
   }, []);
 
-  function handleDelete(id) {
+  function handleDeleteTask(id) {
     console.log(`http://127.0.0.1:3000/api/v1/tasks/${id}`);
     axios
       .delete(`http://127.0.0.1:3000/api/v1/tasks/${id}`)
@@ -40,7 +40,11 @@ function TodoList() {
           Lista de Tarefas
         </h1>
         {tasks.map((task) => (
-          <TodoItem key={task.id} task={task} handleDelete={handleDelete} />
+          <TodoItem
+            key={task.id}
+            task={task}
+            handleDeleteTask={handleDeleteTask}
+          />
         ))}
       </div>
       {shouldShowArrowUp() && (

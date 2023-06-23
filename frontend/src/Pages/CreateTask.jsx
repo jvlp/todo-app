@@ -6,7 +6,7 @@ function CreateTask() {
   const [desc, setDesc] = useState("");
   const [prio, setPrio] = useState(0);
 
-  function createTaskRequest(e) {
+  function handleCreateTask(e) {
     e.preventDefault();
     const task = {
       name: name,
@@ -29,7 +29,7 @@ function CreateTask() {
 
   return (
     <form
-      onSubmit={createTaskRequest}
+      onSubmit={handleCreateTask}
       className="m-4 flex h-fit flex-col rounded-md bg-slate-200 p-10"
     >
       <h1 className="mb-8 self-center text-4xl font-extrabold text-sky-800">

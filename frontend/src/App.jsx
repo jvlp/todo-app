@@ -4,6 +4,7 @@ import EditTask from "./Pages/EditTask";
 import TodoItem from "./Components/TodoItem";
 import TodoList from "./Pages/TodoList";
 import Home from "./Pages/Home";
+import Login from "./Pages/Login";
 
 const mockTask = {
   id: 7,
@@ -21,7 +22,8 @@ function App() {
       {/* <TodoItem props={mockTask} /> */}
       {/* <TodoList /> */}
       {/* <CreateMember /> */}
-      <Home />
+      {/* <Home /> */}
+      <Login />
     </div>
   );
 }
