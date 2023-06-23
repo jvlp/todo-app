@@ -26,6 +26,15 @@ class Api::V1::TasksController < ApplicationController
 
   # PATCH/PUT /tasks/1
   def update
+
+    if !@task.finished && params[:finished]
+      @task.get_finish_date
+    end
+
+    if @task.finished && !params[:finished]
+      @task.update_attribute(:finish_date, nil)
+    end
+    
     if @task.update(task_params)
       render json: @task
     else
