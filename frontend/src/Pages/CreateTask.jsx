@@ -52,13 +52,21 @@ function CreateTask() {
         className="form-item resize-none sm:w-[30rem]"
       ></textarea>
       <div className="flex justify-between">
-        <input
-          type="submit"
-          value="Cadastrar"
-          className="w-40 rounded-lg bg-sky-500 p-2 text-2xl"
-        />
-        <div className="">{desc.length}/140</div>
+        <select className="form-item w-full text-slate-800 focus:bg-slate-300">
+          <option value="0">Prioridade</option>
+          <option value="0">Baixa</option>
+          <option value="1">Média</option>
+          <option value="2">Alta</option>
+        </select>
+        <div className="relative top-[-35px] mx-4 text-slate-700">
+          {desc.length}/140
+        </div>
       </div>
+      <input
+        type="submit"
+        value="Cadastrar"
+        className="w-40 rounded-lg bg-sky-500 p-2 text-2xl"
+      />
     </form>
   );
 }
