@@ -1,10 +1,17 @@
-import React from "react";
+import { useEffect } from "react";
 import { VscTasklist } from "react-icons/vsc";
 import { MdPostAdd, MdEdit, MdPersonAdd } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 
 function Home() {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!localStorage.getItem("jwt")) {
+      navigate("/login");
+    }
+  }, []);
+
   return (
     <div className="m-4 flex flex-col rounded-md bg-slate-200 p-10 ">
       <h1 className="mb-8 self-center text-4xl font-extrabold text-sky-800">

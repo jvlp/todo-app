@@ -1,10 +1,23 @@
 import axios from "axios";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+const config = {
+  headers: {
+    Authorization: "Bearer " + localStorage.getItem("jwt"),
+  },
+};
 
 function CreateTask() {
   const [name, setName] = useState("");
   const [desc, setDesc] = useState("");
   const [prio, setPrio] = useState(0);
+
+  const navigate = useNavigate();
+
+  if (!localStorage.getItem("jwt")) {
+    navigate("/login");
+  }
 
   function handleCreateTask(e) {
     e.preventDefault();
@@ -16,7 +29,7 @@ function CreateTask() {
       member_id: 2,
     };
     axios
-      .post("http://127.0.0.1:3000/api/v1/tasks", task)
+      .post("http://127.0.0.1:3000/api/v1/tasks", task, config)
       .then(function (response) {
         console.log(response);
         setName("");

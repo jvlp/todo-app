@@ -1,10 +1,21 @@
 import axios from "axios";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+const config = {
+  headers: {
+    Authorization: "Bearer " + localStorage.getItem("jwt"),
+  },
+};
 
 function CreateMember() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [prio, setPrio] = useState(0);
+
+  const navigate = useNavigate();
+  if (!localStorage.getItem("jwt")) {
+    navigate("/login");
+  }
 
   function handleCreateMember(e) {
     e.preventDefault();
@@ -13,7 +24,7 @@ function CreateMember() {
       email: email,
     };
     axios
-      .post("http://127.0.0.1:3000/api/v1/members", member)
+      .post("http://127.0.0.1:3000/api/v1/members", member, config)
       .then(function (response) {
         console.log(response);
         setName("");

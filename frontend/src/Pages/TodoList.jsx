@@ -2,6 +2,13 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
 import TodoItem from "../Components/TodoItem";
 import { AiOutlineArrowUp } from "react-icons/ai";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
+const config = {
+  headers: {
+    Authorization: "Bearer " + localStorage.getItem("jwt"),
+  },
+};
 
 function TodoList() {
   const pageSize = 10;
@@ -11,12 +18,21 @@ function TodoList() {
   const [loading, setLoading] = useState(true);
   const [hasMore, setHasMore] = useState(false);
 
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!localStorage.getItem("jwt")) {
+      navigate("/login");
+    }
+  }, []);
+
   // fetch tasks
   useEffect(() => {
     setLoading(true);
     axios
       .get(
-        `http://127.0.0.1:3000/api/v1/tasks?pageSize=${pageSize}&pageNumber=${pageNumber}`
+        `http://127.0.0.1:3000/api/v1/tasks?pageSize=${pageSize}&pageNumber=${pageNumber}`,
+        config
       )
       .then((response) => {
         setTasks((current) => [...current, ...response.data]);
@@ -47,7 +63,7 @@ function TodoList() {
   function handleDeleteTask(id) {
     console.log(`http://127.0.0.1:3000/api/v1/tasks/${id}`);
     axios
-      .delete(`http://127.0.0.1:3000/api/v1/tasks/${id}`)
+      .delete(`http://127.0.0.1:3000/api/v1/tasks/${id}`, config)
       .then(() => {
         setTasks((current) => current.filter((t) => t.id !== id));
       })
@@ -61,7 +77,7 @@ function TodoList() {
     const task = { ...tasks.filter((t) => t.id === id), finished: true };
     console.log(task);
     axios
-      .put(`http://127.0.0.1:3000/api/v1/tasks/${id}`, task)
+      .put(`http://127.0.0.1:3000/api/v1/tasks/${id}`, task, config)
       .then((response) => {
         // update tasks
         setTasks((current) =>
