@@ -6,13 +6,14 @@ import axios from "axios";
 function TodoList() {
   const [tasks, setTasks] = useState([]);
 
+  // fetch tasks when mounted
   useEffect(() => {
     axios
       .get("http://127.0.0.1:3000/api/v1/tasks")
-      .then(function (response) {
+      .then((response) => {
         setTasks(response.data);
       })
-      .catch(function (error) {
+      .catch((error) => {
         console.log(error);
       });
   }, []);
@@ -21,10 +22,10 @@ function TodoList() {
     console.log(`http://127.0.0.1:3000/api/v1/tasks/${id}`);
     axios
       .delete(`http://127.0.0.1:3000/api/v1/tasks/${id}`)
-      .then(function (response) {
+      .then(() => {
         setTasks((current) => current.filter((t) => t.id !== id));
       })
-      .catch(function (error) {
+      .catch((error) => {
         console.log(error);
       });
   }
@@ -35,14 +36,13 @@ function TodoList() {
     console.log(task);
     axios
       .put(`http://127.0.0.1:3000/api/v1/tasks/${id}`, task)
-      .then(function (response) {
-        console.log(response);
+      .then((response) => {
         // update tasks
         setTasks((current) =>
           current.map((t) => (t.id === id ? response.data : t))
         );
       })
-      .catch(function (error) {
+      .catch((error) => {
         console.log(error);
       });
   }
