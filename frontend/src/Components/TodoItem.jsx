@@ -5,7 +5,6 @@ import TodoItemBottom from "./TodoItemBottom";
 
 function TodoItem({ task, handleDeleteTask, handleFinishTask }) {
   const { id, finished, finish_date, name, priority, description } = task;
-  console.log(task);
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (

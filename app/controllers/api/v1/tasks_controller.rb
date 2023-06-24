@@ -3,8 +3,13 @@ class Api::V1::TasksController < ApplicationController
 
   # GET /tasks
   def index
-    @tasks = Task.all
-
+    puts params
+    if params[:pageSize].present? && params[:pageNumber].present?
+      @tasks = Task.limit(params[:pageSize].to_i).offset(params[:pageNumber].to_i * params[:pageSize].to_i)
+    else
+      @tasks = Task.all
+    end
+    
     render json: @tasks
   end
 
