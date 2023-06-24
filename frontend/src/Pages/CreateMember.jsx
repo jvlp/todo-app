@@ -15,9 +15,6 @@ function CreateMember() {
   const [password_confirmation, setPassword_confirmation] = useState("");
 
   const navigate = useNavigate();
-  if (!localStorage.getItem("jwt")) {
-    navigate("/login");
-  }
 
   function handleCreateMember(e) {
     e.preventDefault();
