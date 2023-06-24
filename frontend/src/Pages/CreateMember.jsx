@@ -11,6 +11,8 @@ const config = {
 function CreateMember() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [password_confirmation, setPassword_confirmation] = useState("");
 
   const navigate = useNavigate();
   if (!localStorage.getItem("jwt")) {
@@ -22,13 +24,14 @@ function CreateMember() {
     const member = {
       name: name,
       email: email,
+      password: password,
+      password_confirmation: password_confirmation,
     };
     axios
       .post("http://127.0.0.1:3000/api/v1/members", member, config)
       .then(function (response) {
         console.log(response);
-        setName("");
-        setEmail("");
+        navigate("/list");
       })
       .catch(function (error) {
         console.log(error);
@@ -57,6 +60,22 @@ function CreateMember() {
         placeholder="Email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
+        className="form-item sm:w-[30rem]"
+      />
+      <input
+        type="password"
+        placeholder="Senha"
+        minLength={3}
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        className="form-item sm:w-[30rem]"
+      />
+      <input
+        type="password"
+        placeholder="Repita a Senha"
+        minLength={3}
+        value={password_confirmation}
+        onChange={(e) => setPassword_confirmation(e.target.value)}
         className="form-item sm:w-[30rem]"
       />
       <input
