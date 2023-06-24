@@ -17,8 +17,10 @@ class Api::V1::MembersController < ApplicationController
   def create
     @member = Member.new(member_params)
 
-    if @member.save
-      render json: @member, status: :created
+    if @member.valid?
+      @member.save
+      token = encode_token({ member_id: @member.id })
+      render json: {member: @member, token: token}, status: :created
     else
       render json: @member.errors, status: :unprocessable_entity
     end
@@ -46,6 +48,6 @@ class Api::V1::MembersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def member_params
-      params.require(:member).permit(:email, :name)
+      params.permit(:email, :name, :password, :password_confirmation)
     end
 end

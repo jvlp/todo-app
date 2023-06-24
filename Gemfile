@@ -48,3 +48,5 @@ end
 
 
 gem "rack-cors", "~> 2.0"
+
+gem "jwt", "~> 2.7"
