@@ -1,24 +1,29 @@
-# README
+# TO-DO App
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### Dependências
+``` 
+Ruby 3.2.2
+Rails 7.0.5
+Node 18.13.0
+```
+---
+### Instalação
+```Bash
+git clone https://github.com/jvlp/todo-app
+cd todo-app
+bundle install
+cd fronend
+yarn # ou npm -i
+```
+---
+### Execução
+#### API
+```Bash
+# Na pasta todo-app
+rails s
+```
+#### Frontend
+```Bash
+# Na pasta todo-app/frontend
+yarn dev
+```
