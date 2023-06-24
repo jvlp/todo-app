@@ -15,6 +15,19 @@ bundle install
 cd fronend
 yarn # ou npm -i
 ```
+
+```Ruby
+# No arquivo todo-app/config/database.yml
+# altere as linhas 16 e 17 com as suas credenciais de desenvolvimento do mysql
+  username: jvlp
+  password: 123
+```
+
+```Bash
+# Na pasta todo-app
+rake db:reset # criar e popular as tabelas
+```
+
 ---
 ### Execução
 #### API
