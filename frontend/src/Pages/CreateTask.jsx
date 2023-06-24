@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const config = {
@@ -15,9 +15,11 @@ function CreateTask() {
 
   const navigate = useNavigate();
 
-  if (!localStorage.getItem("jwt")) {
-    navigate("/login");
-  }
+  useEffect(() => {
+    if (!localStorage.getItem("jwt")) {
+      navigate("/login");
+    }
+  }, [])
 
   function handleCreateTask(e) {
     e.preventDefault();
