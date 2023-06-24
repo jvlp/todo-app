@@ -53,7 +53,7 @@ function TodoList() {
 
   return (
     <>
-      <div className="flex h-fit w-[80%] flex-col rounded-md bg-slate-200 p-10">
+      <div className="flex h-fit w-[80%] flex-col rounded-md bg-slate-200 p-6">
         <h1 className="mb-8 self-center text-4xl font-extrabold text-sky-800">
           Lista de Tarefas
         </h1>

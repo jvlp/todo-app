@@ -4,7 +4,8 @@ import TodoItemTop from "./TodoItemTop";
 import TodoItemBottom from "./TodoItemBottom";
 
 function TodoItem({ task, handleDeleteTask, handleFinishTask }) {
-  const { id, finished, name, priority, description } = task;
+  const { id, finished, finish_date, name, priority, description } = task;
+  console.log(task);
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (
@@ -12,8 +13,9 @@ function TodoItem({ task, handleDeleteTask, handleFinishTask }) {
       <TodoItemTop
         status={finished}
         name={name}
-        isExpanded={isExpanded}
+        finish_date={finish_date}
         priority={priority}
+        isExpanded={isExpanded}
         setIsExpanded={setIsExpanded}
       />
       {isExpanded && (
