@@ -3,6 +3,12 @@ import { useEffect, useState } from "react";
 import { MdCheck, MdDelete } from "react-icons/md";
 import { useNavigate, useParams } from "react-router-dom";
 
+const config = {
+  headers: {
+    Authorization: "Bearer " + localStorage.getItem("jwt"),
+  },
+};
+
 function EditTask() {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -16,8 +22,12 @@ function EditTask() {
   });
 
   useEffect(() => {
+    if (!localStorage.getItem("jwt")) {
+      navigate("/login");
+    }
+
     axios
-      .get(`http://127.0.0.1:3000/api/v1/tasks/${id}`)
+      .get(`http://127.0.0.1:3000/api/v1/tasks/${id}`, config)
       .then((response) => {
         setTask(response.data);
       })
@@ -29,7 +39,7 @@ function EditTask() {
   function handleEditTask(e) {
     e.preventDefault();
     axios
-      .put(`http://127.0.0.1:3000/api/v1/tasks/${id}`, task)
+      .put(`http://127.0.0.1:3000/api/v1/tasks/${id}`, task, config)
       .then(function (response) {
         console.log(response);
         navigate("/list");
@@ -41,7 +51,7 @@ function EditTask() {
 
   function handleDeleteTask() {
     axios
-      .delete(`http://127.0.0.1:3000/api/v1/tasks/${task.id}`)
+      .delete(`http://127.0.0.1:3000/api/v1/tasks/${task.id}`, config)
       .then(function (response) {
         navigate("/list");
       })
@@ -54,7 +64,7 @@ function EditTask() {
     // update target task to finished === true
     setTask((current) => ({ ...current, finished: true }));
     axios
-      .put(`http://127.0.0.1:3000/api/v1/tasks/${task.id}`, task)
+      .put(`http://127.0.0.1:3000/api/v1/tasks/${task.id}`, task, config)
       .then(function (response) {
         navigate("/list");
       })

@@ -1,4 +1,5 @@
 class Api::V1::TasksController < ApplicationController
+  before_action :authorize
   before_action :set_task, only: %i[ show update destroy ]
 
   # GET /tasks

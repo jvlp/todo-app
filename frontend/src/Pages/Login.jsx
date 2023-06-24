@@ -1,17 +1,29 @@
 import axios from "axios";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
-  const [name, setName] = useState("");
+  const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
+
+  const navigate = useNavigate();
 
   function handleLogin(e) {
     e.preventDefault();
     const member = {
-      name: name,
       email: email,
+      password: password,
     };
-    console.log(member);
+    axios
+      .post("http://127.0.0.1:3000/api/v1/login", member)
+      .then(function (response) {
+        console.log(response);
+        localStorage.setItem("jwt", response.data.token);
+        navigate("/");
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   }
 
   return (
@@ -23,19 +35,17 @@ function Login() {
         Login
       </h1>
       <input
-        type="text"
-        placeholder="Nome"
-        value={name}
-        minLength={5}
-        maxLength={50}
-        onChange={(e) => setName(e.target.value)}
-        className="form-item sm:w-[30rem]"
-      />
-      <input
         type="email"
         placeholder="Email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
+        className="form-item sm:w-[30rem]"
+      />
+      <input
+        type="password"
+        placeholder="Senha"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
         className="form-item sm:w-[30rem]"
       />
       <input
