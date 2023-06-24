@@ -39,6 +39,30 @@ function EditTask() {
       });
   }
 
+  function handleDeleteTask() {
+    axios
+      .delete(`http://127.0.0.1:3000/api/v1/tasks/${task.id}`)
+      .then(function (response) {
+        navigate("/list");
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
+  function handleFinishTask() {
+    // update target task to finished === true
+    setTask((current) => ({ ...current, finished: true }));
+    axios
+      .put(`http://127.0.0.1:3000/api/v1/tasks/${task.id}`, task)
+      .then(function (response) {
+        navigate("/list");
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
   return (
     <form
       onSubmit={handleEditTask}
@@ -85,10 +109,16 @@ function EditTask() {
           value="Salvar"
           className="w-40 rounded-lg bg-sky-500 p-2 text-xl font-bold text-slate-200"
         />
-        <button className="mx-4 rounded-lg bg-teal-500 p-4 text-xl font-bold text-slate-200">
+        <button
+          onClick={handleFinishTask}
+          className="mx-4 rounded-lg bg-teal-500 p-4 text-xl font-bold text-slate-200"
+        >
           <MdCheck />
         </button>
-        <button className="rounded-lg bg-red-600 px-5 text-xl font-bold text-slate-200">
+        <button
+          onClick={handleDeleteTask}
+          className="rounded-lg bg-red-600 px-5 text-xl font-bold text-slate-200"
+        >
           <MdDelete />
         </button>
       </div>

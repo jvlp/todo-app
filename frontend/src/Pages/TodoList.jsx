@@ -6,13 +6,14 @@ import axios from "axios";
 function TodoList() {
   const [tasks, setTasks] = useState([]);
 
+  // fetch tasks when mounted
   useEffect(() => {
     axios
       .get("http://127.0.0.1:3000/api/v1/tasks")
-      .then(function (response) {
+      .then((response) => {
         setTasks(response.data);
       })
-      .catch(function (error) {
+      .catch((error) => {
         console.log(error);
       });
   }, []);
@@ -21,10 +22,27 @@ function TodoList() {
     console.log(`http://127.0.0.1:3000/api/v1/tasks/${id}`);
     axios
       .delete(`http://127.0.0.1:3000/api/v1/tasks/${id}`)
-      .then(function (response) {
+      .then(() => {
         setTasks((current) => current.filter((t) => t.id !== id));
       })
-      .catch(function (error) {
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
+  function handleFinishTask(id) {
+    // update target task to finished === true
+    const task = { ...tasks.filter((t) => t.id === id), finished: true };
+    console.log(task);
+    axios
+      .put(`http://127.0.0.1:3000/api/v1/tasks/${id}`, task)
+      .then((response) => {
+        // update tasks
+        setTasks((current) =>
+          current.map((t) => (t.id === id ? response.data : t))
+        );
+      })
+      .catch((error) => {
         console.log(error);
       });
   }
@@ -35,7 +53,7 @@ function TodoList() {
 
   return (
     <>
-      <div className="flex h-fit w-[80%] flex-col rounded-md bg-slate-200 p-10">
+      <div className="flex h-fit w-[80%] flex-col rounded-md bg-slate-200 p-6">
         <h1 className="mb-8 self-center text-4xl font-extrabold text-sky-800">
           Lista de Tarefas
         </h1>
@@ -44,6 +62,7 @@ function TodoList() {
             key={task.id}
             task={task}
             handleDeleteTask={handleDeleteTask}
+            handleFinishTask={handleFinishTask}
           />
         ))}
       </div>
