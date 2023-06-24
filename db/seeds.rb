@@ -21,7 +21,7 @@ end
         name: "task#{i}",
         description: "desc desc desc desc desc desc desc desc desc desc desc desc desc desc",
         finished: false,
-        priority: i%2,
-        member_id: i%5
+        priority: i%3,
+        member_id: i%5 + 1
     )
 end
