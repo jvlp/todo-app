@@ -19,6 +19,7 @@ function Login() {
       .then(function (response) {
         console.log(response);
         localStorage.setItem("jwt", response.data.token);
+        localStorage.setItem("member_id", response.data.member.id);
         navigate("/");
       })
       .catch(function (error) {

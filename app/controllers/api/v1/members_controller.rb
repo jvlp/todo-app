@@ -31,7 +31,7 @@ class Api::V1::MembersController < ApplicationController
 
     if member && member.authenticate(member_params[:password])
         token = encode_token({ member_id: member.id })
-        render json: { user: member, token: token }, status: :ok
+        render json: { member: member, token: token }, status: :ok
     else
     render json: {message: "Unauthorized"}, status: :unauthorized
   end
