@@ -4,7 +4,8 @@ import TodoItemTop from "./TodoItemTop";
 import TodoItemBottom from "./TodoItemBottom";
 
 function TodoItem({ task, handleDeleteTask, handleFinishTask }) {
-  const { id, finished, finish_date, name, priority, description } = task;
+  const { id, finished, finish_date, name, priority, description, member_id } =
+    task;
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (
@@ -21,6 +22,7 @@ function TodoItem({ task, handleDeleteTask, handleFinishTask }) {
         <TodoItemBottom
           handleDeleteTask={handleDeleteTask}
           handleFinishTask={handleFinishTask}
+          member_id={member_id}
           desc={description}
           id={id}
         />

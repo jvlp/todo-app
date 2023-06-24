@@ -26,7 +26,7 @@ function CreateTask() {
       description: desc,
       finished: false,
       priority: prio,
-      member_id: 2,
+      member_id: localStorage.getItem("member_id"),
     };
     axios
       .post("http://127.0.0.1:3000/api/v1/tasks", task, config)
